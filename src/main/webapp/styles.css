@@ -1,0 +1,122 @@
+html, body {
+	height: 100%;
+}
+
+body  {
+	background-image: url("img/bg.png");
+	background-position: right bottom;
+	background-repeat: no-repeat;
+	background-color: gray;
+}
+
+.menu_col {
+    background-color: white;
+	text-align: center;
+	width: 60%;
+	height: 100%;
+}
+
+.menu_banner {
+	background-color: white;
+	width: 99%;
+	text-align: left;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+}
+
+
+.menu_box {
+	background-color: white;
+	display: inline-block;
+	width: 60%;
+	text-align: left;
+	margin-left: 0.5%;
+}
+
+.menu_banner, .menu_box {
+    font-family: Courier, monospace;
+    font-smooth: never;
+    font-size: 64px;
+    letter-spacing: -4px;
+}
+
+.padding {
+    padding-left: 20px;
+}
+
+.black_border {
+	color:black;
+	border: 3px solid black;
+	height: 100% !important;
+}
+
+.white_border {
+    color:white;
+    border: 3px solid white;
+    height: 100% !important;
+}
+
+legend {
+	color: black;
+	text-align: left;
+	padding-left: 20%;
+	padding-top: 10%;
+}
+
+header ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+header li {
+	float: left;
+}
+
+header li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+header li a:hover {
+	color: white;
+	background-color: #111;
+}
+
+header h1 {
+	text-align: center;
+	padding: 20px;
+}
+
+.menu_col input[type=submit] {
+	width: 60%;
+	height: 40px;
+	background-color: #333;
+	border: none;
+	color: white;
+	text-decoration: none;
+	margin: 4px 2px;
+}
+
+menu_col input[type=submit]:hover {
+	background-color: #111;
+}
+
+input[type=text], input[type=password] {
+	width: 60%;
+	height: 56px;
+}
+
+.menu_opt, .menu_opt:hover {
+    width: 100%;
+    background-color: white;
+    border: none;
+    outline: none;
+    color: black;
+    text-align: left;
+}
