@@ -14,17 +14,18 @@
 		</ul>
 	</header>
 	<body>
+
 		<div class="menu_col">
 			<div class="white_border">
 				<div class="black_border">
-					<fieldset>
-						<form action="/Project1/services/login" method="post">
-							<br/><legend>Please Login to Proceed</legend><br/>
-							<input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username"><br/><br/>
-							<input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password"><br/><br/>
-							<input type="submit" value="Login" id="login-form-submit">
-						</form>
-					</fieldset>
+					<br/><h2 id="login_header">Please Login to Proceed</h2><br/>
+					<form action="/Project1/services/login/form" method="post">
+						<div class="form-group">
+							<input type="text" name="username" id="username" class="login-form-field" placeholder="Username"><br/><br/>
+							<input type="password" name="password" id="password" class="login-form-field" placeholder="Password"><br/><br/>
+							<button type="submit" class="btn btn-success">Login</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

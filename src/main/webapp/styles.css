@@ -69,11 +69,15 @@ body  {
 	height: 100%;
 }
 
-legend {
+#login_header {
 	color: black;
 	text-align: left;
 	padding-left: 20%;
 	padding-top: 10%;
+	font-family: Courier, monospace;
+    font-smooth: never;
+    font-size: 32px;
+    letter-spacing: -4px;
 }
 
 header ul {
@@ -106,7 +110,7 @@ header h1 {
 	padding: 20px;
 }
 
-.menu_col input[type=submit] {
+.menu_col button[type=submit] {
 	width: 60%;
 	height: 40px;
 	background-color: #333;
@@ -116,7 +120,7 @@ header h1 {
 	margin: 4px 2px;
 }
 
-menu_col input[type=submit]:hover {
+menu_col button[type=submit]:hover {
 	background-color: #111;
 }
 
