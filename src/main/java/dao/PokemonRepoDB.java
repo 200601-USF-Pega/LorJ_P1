@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PokemonRepoDB implements IPokemonRepo
+public class PokemonRepoDB implements IPokemon
 {
 
     private Connection cm;
@@ -273,8 +273,9 @@ public class PokemonRepoDB implements IPokemonRepo
 
     }
 
-    public void displayTrainerPokemon(Trainer t)
+    public List<Pokemon> getTrainerPokemon(Trainer t)
     {
+        List<Pokemon> result = new ArrayList<Pokemon>();
         try
         {
             PreparedStatement ps = cm.prepareStatement("SELECT * FROM pokemon_table WHERE ot=?");
@@ -283,18 +284,27 @@ public class PokemonRepoDB implements IPokemonRepo
             ResultSet rs = ps.getResultSet();
             while(rs.next())
             {
-                String n = rs.getString("nickname");
-                if(!n.isEmpty())
+                Pokemon p = new Pokemon();
+                p.setName(rs.getString("pokemon_name"));
+                p.setNickname(rs.getString("nickname"));
+                p.setLevel(rs.getInt("lvl"));
+                p.setAbility(rs.getString("ability"));
+                p.setItem(rs.getString("item"));
+                p.setNature(Natures.valueOf(rs.getString("nature")));
+                p.setGender(Genders.valueOf(rs.getString("gender")));
+                p.setShiny(rs.getBoolean("shiny"));
+                p.setOT(rs.getInt("ot"));
+                if(!result.contains(p))
                 {
-                    n = " (" + n + ")";
+                    result.add(p);
                 }
-                System.out.println("[" + rs.getInt("p_id") + "] " + rs.getString("pokemon_name") + n + " Lvl. " + rs.getInt("lvl"));
             }
         }
         catch(SQLException e)
         {
             e.printStackTrace();
         }
+        return result;
     }
 
     public List<Pokemon> getAllPokemon()

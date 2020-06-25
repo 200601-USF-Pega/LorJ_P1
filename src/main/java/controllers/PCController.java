@@ -1,35 +1,51 @@
 package controllers;
 
-import dao.ConnectionManager;
-import dao.IPokemonRepo;
+import dao.IPokemon;
 import dao.PokemonRepoDB;
+import models.Trainer;
+import org.codehaus.jackson.map.ObjectMapper;
+import web.ConnectionManager;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 
+@Path("/pokemon")
 public class PCController
 {
-	private static IPokemonRepo repo = new PokemonRepoDB(ConnectionManager.getConnection());
 
-	public static void optionSelect(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	@GET
+	@Path("/allpokemon")
+	@Consumes("application/json")
+	public Response getAllPokemon() throws IOException
 	{
-		String input = req.getParameter("menu_opt");
-		switch(input)
-		{
-		case "WITHDRAW":
-			break;
-		}
+		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
+		ObjectMapper mapper = new ObjectMapper();
+		String response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pokeRepo.getAllPokemon());
+		return Response
+				.status(Response.Status.OK)
+				.entity(response)
+				.type(MediaType.APPLICATION_JSON_TYPE)
+				.build();
 	}
 
-	public static void addPokemon(HttpServletRequest req, HttpServletResponse resp)
+	@GET
+	@Path("/trainerpokemon")
+	@Consumes("application/json")
+	public Response getTrainerPokemon() throws IOException
 	{
-
+		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
+		ObjectMapper mapper = new ObjectMapper();
+		Trainer t = new Trainer("RED", 2);
+		String response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pokeRepo.getTrainerPokemon(t));
+		return Response
+				.status(Response.Status.OK)
+				.entity(response)
+				.type(MediaType.APPLICATION_JSON_TYPE)
+				.build();
 	}
 
-	public static void getPokemon(HttpServletRequest req, HttpServletResponse resp)
-	{
-
-	}
 }

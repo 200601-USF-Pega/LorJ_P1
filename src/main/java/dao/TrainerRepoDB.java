@@ -1,8 +1,11 @@
 package dao;
 
-import java.sql.*;
+import models.Trainer;
 
-public class TrainerRepoDB implements ITrainerRepo
+import java.sql.*;
+import java.util.ArrayList;
+
+public class TrainerRepoDB implements ITrainer
 {
 	private Connection cm;
 
@@ -43,22 +46,26 @@ public class TrainerRepoDB implements ITrainerRepo
 	}
 
 	@Override
-	public void viewAllTrainers()
+	public ArrayList<Trainer> getAllTrainers()
 	{
+		ArrayList<Trainer> list = new ArrayList<Trainer>();
 		try
 		{
 			Statement s = cm.createStatement();
 			s.executeQuery("SELECT * FROM trainer_table");
 			ResultSet rs = s.getResultSet();
+
 			while(rs.next())
 			{
-				System.out.println("[" + rs.getInt("t_id") + "] " + rs.getString("trainer_name"));
+				list.add(new Trainer(rs.getString("trainer_name"), rs.getInt("t_id")));
 			}
 		}
 		catch(SQLException e)
 		{
 			e.getStackTrace();
+			return null;
 		}
+		return list;
 	}
 
 }
