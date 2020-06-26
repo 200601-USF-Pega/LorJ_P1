@@ -1,14 +1,16 @@
-package controllers;
+package services;
 
+import com.sun.jersey.multipart.FormDataParam;
 import dao.IPokemon;
 import dao.PokemonRepoDB;
+import models.Genders;
+import models.Natures;
+import models.Pokemon;
 import models.Trainer;
 import org.codehaus.jackson.map.ObjectMapper;
 import web.ConnectionManager;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -19,7 +21,6 @@ public class PCController
 
 	@GET
 	@Path("/allpokemon")
-	@Consumes("application/json")
 	public Response getAllPokemon() throws IOException
 	{
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
@@ -34,7 +35,7 @@ public class PCController
 
 	@GET
 	@Path("/trainerpokemon")
-	@Consumes("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getTrainerPokemon() throws IOException
 	{
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
@@ -46,6 +47,22 @@ public class PCController
 				.entity(response)
 				.type(MediaType.APPLICATION_JSON_TYPE)
 				.build();
+	}
+
+	@POST
+	@Path("/newpokemon")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response newPokemon(@FormDataParam("name") String name, @FormDataParam("nickname") String nickname, @FormDataParam("level") int level,
+	                           @FormDataParam("moveset") String [] moveset, @FormDataParam("ability") String ability, @FormDataParam("item") String item,
+	                           @FormDataParam("evs") int [] evs, @FormDataParam("nature") String nature, @FormDataParam("gender") String gender,
+	                           @FormDataParam("shiny") boolean shiny, @FormDataParam("ot") int ot)
+	{
+		Pokemon p = new Pokemon(name, nickname, level, moveset, ability, item, evs, Natures.valueOf(nature), Genders.valueOf(gender), shiny, ot);
+		System.out.println(p);
+		//IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
+		//pokeRepo.addPokemon(p);
+
+		return Response.ok().build();
 	}
 
 }

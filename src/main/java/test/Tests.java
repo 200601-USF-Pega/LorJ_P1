@@ -13,12 +13,10 @@ import models.Trainer;
 import org.junit.AfterClass;
 import org.junit.Test;
 import dao.LoginDB;
-import services.PokemonService;
 
 public class Tests
 {
 
-	PokemonService ps = new PokemonService();
 	Pokemon p = new Pokemon();
 
 	@Test
@@ -35,27 +33,6 @@ public class Tests
 
 	}
 
-	@Test
-	public void pokemonTransactionSuccess()
-	{
-		ps.addPokemon(p);
-		assertEquals(p, ps.removePokemon(0));
-	}
-
-	@Test(expected = TeamTransactionException.class)
-	public void pokemonWithdrawException()
-	{
-		ps.removePokemon(0);
-	}
-
-	@Test(expected = TeamTransactionException.class)
-	public void pokemonDepositException()
-	{
-		for(int i = 0; i < 7; i++)
-		{
-			ps.addPokemon(new Pokemon());
-		}
-	}
 
 	@Test
 	public void testSmogon()

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" href="styles.css" type="text/css"/>
+		<title>PC System</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<script>
+			function createPokemon()
+			{
+				let pokemon = [];
+				pokemon.name = document.querySelector("#name").value;
+				pokemon.nickname = document.querySelector("#nickname").value;
+				pokemon.level = document.querySelector("#level").value;
+
+				let moveset = [document.querySelector("#move1").value, document.querySelector("#move2").value,
+							   document.querySelector("#move3").value, document.querySelector("#move4").value];
+				pokemon.moveset = moveset;
+
+				pokemon.ability = document.querySelector("#ability").value;
+				pokemon.item = document.querySelector("#item").value;
+
+				let evs = [document.querySelector("#ev1").value, document.querySelector("#ev2").value,
+						   document.querySelector("#ev3").value, document.querySelector("#ev4").value,
+						   document.querySelector("#ev5").value, document.querySelector("#ev6").value];
+				pokemon.evs = evs;
+
+				pokemon.nature = document.querySelector("#nature").value;
+				pokemon.gender = document.querySelector("#gender").value;
+
+				if (document.querySelector("#shiny").value == "on")
+					pokemon.shiny = "true";
+				else
+					pokemon.shiny = "false";
+
+				pokemon.ot = 2;
+
+				console.log(JSON.stringify(pokemon));
+
+				var req = new XMLHttpRequest();
+				req.onreadystatechange = function () {
+					if (this.readyState > 3) {
+						document.querySelector("#name").innerHTML = "";
+						document.querySelector("#nickname").innerHTML = "";
+						document.querySelector("#level").innerHTML = "";
+					}
+				}
+
+				req.open("POST", "http://localhost:8080/Project1/services/pokemon/newpokemon", true);
+				req.setRequestHeader('Content-Type', 'application/json');
+				req.send(JSON.stringify(pokemon));
+			}
+		</script>
+	</head>
+	<header>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="login.html">Login</a></li>
+		</ul>
+	</header>
+	<body>
+		<div class="menu_box">
+			<div class="white_border">
+				<div class="black_border">
+					<fieldset id="create_pokemon">
+						<h2 class="page_header">CREATE POK&eacute;MON</h2>
+						<form action="/Project1/services/pokemon/newpokemon" method="post">
+							<div class="form-group">
+								<input type="number" name="level" id="level" placeholder="Lvl" min="1" max="100"><br/>
+								<input type="text" name="name" id="name" placeholder="Name">
+								<input type="text" name="nickname" id="nickname" placeholder="Nickname">
+								<input type="text" name="ability" id="ability" placeholder="Ability">
+								<input type="text" name="item" id="item" placeholder="Item">
+								<div id="moveset">
+									<input type="text" name="move1" id="move1" placeholder="1st Move">
+									<input type="text" name="move2" id="move2" placeholder="2nd Move">
+									<input type="text" name="move3" id="move3" placeholder="3rd Move">
+									<input type="text" name="move4" id="move4" placeholder="4th Move">
+								</div><br/><br/>
+								<div id="evs">
+									<input type="number" name="ev1" id="ev1" placeholder="HP" min="0" max="252">
+									<input type="number" name="ev2" id="ev2" placeholder="ATK" min="0" max="252">
+									<input type="number" name="ev3" id="ev3" placeholder="DEF" min="0" max="252">
+									<input type="number" name="ev4" id="ev4" placeholder="SPA" min="0" max="252">
+									<input type="number" name="ev5" id="ev5" placeholder="SPD" min="0" max="252">
+									<input type="number" name="ev6" id="ev6" placeholder="SPE" min="0" max="252">
+								</div><br/>
+								<select style="float: left; height: 40px; width: 45%; font-size: 16px" name="nature" id="nature">
+									<option value="Hardy">Hardy</option>
+									<option value="Lonely">Lonely</option>
+									<option value="Brave">Brave</option>
+									<option value="Adamant">Adamant</option>
+									<option value="Naughty">Naughty</option>
+									<option value="Bold">Bold</option>
+									<option value="Docile">Docile</option>
+									<option value="Relaxed">Relaxed</option>
+									<option value="Impish">Impish</option>
+									<option value="Lax">Lax</option>
+									<option value="Timid">Timid</option>
+									<option value="Hasty">Hasty</option>
+									<option value="Serious">Serious</option>
+									<option value="Jolly">Jolly</option>
+									<option value="Naive">Naive</option>
+									<option value="Modest">Modest</option>
+									<option value="Mild">Mild</option>
+									<option value="Quiet">Quiet</option>
+									<option value="Bashful">Bashful</option>
+									<option value="Rash">Rash</option>
+									<option value="Calm">Calm</option>
+									<option value="Gentle">Gentle</option>
+									<option value="Sassy">Sassy</option>
+									<option value="Careful">Careful</option>
+									<option value="Quirky">Quirky</option>
+								</select>
+								<select style="float: left; height: 40px; width: 45%; font-size: 16px" name="gender" id="gender">
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+									<option value="Genderless">Genderless</option>
+								</select><br/>
+								<input type="checkbox" name="shiny" id="shiny">
+								<label for="shiny">Is shiny?</label><br/>
+								<input type="submit" class="menu_opt" value="FINISH" onclick="createPokemon()"><br/><p></p>
+							</div>
+						</form>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

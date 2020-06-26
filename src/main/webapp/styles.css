@@ -69,6 +69,14 @@ body  {
 	height: 100%;
 }
 
+.page_header {
+    font-family: Courier, monospace;
+    font-smooth: never;
+    font-size: 64px;
+    letter-spacing: -4px;
+    margin-left: 0.5%;
+}
+
 #login_header {
 	color: black;
 	text-align: left;
@@ -78,6 +86,44 @@ body  {
     font-smooth: never;
     font-size: 32px;
     letter-spacing: -4px;
+}
+
+#create_pokemon, #create_pokemonR {
+    padding-left: 20px;
+}
+
+#create_pokemon input[type=text] {
+	font-size: 16px;
+	width: 48%;
+	float: left;
+}
+
+#create_pokemon input[type=number] {
+    font-size: 16px;
+    width: 15%;
+    height: 40px;
+}
+
+#create_pokemon input[type=checkbox] {
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+
+#create_pokemon label {
+    float: left;
+    padding-left: 1%;
+    font-size: 24px;
+}
+
+#moveset input[type=text] {
+    width: auto;
+}
+
+#evs input[type=number] {
+    width: auto;
+    margin-right: 2%;
+    float: left;
 }
 
 header ul {
