@@ -156,7 +156,7 @@ header h1 {
 	padding: 20px;
 }
 
-.menu_col button[type=submit] {
+.menu_col input[type=button] {
 	width: 60%;
 	height: 40px;
 	background-color: #333;
@@ -166,7 +166,7 @@ header h1 {
 	margin: 4px 2px;
 }
 
-menu_col button[type=submit]:hover {
+menu_col input[type=button]:hover {
 	background-color: #111;
 }
 

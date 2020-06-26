@@ -51,13 +51,10 @@ public class PCController
 
 	@POST
 	@Path("/newpokemon")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response newPokemon(@FormDataParam("name") String name, @FormDataParam("nickname") String nickname, @FormDataParam("level") int level,
-	                           @FormDataParam("moveset") String [] moveset, @FormDataParam("ability") String ability, @FormDataParam("item") String item,
-	                           @FormDataParam("evs") int [] evs, @FormDataParam("nature") String nature, @FormDataParam("gender") String gender,
-	                           @FormDataParam("shiny") boolean shiny, @FormDataParam("ot") int ot)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response newPokemon(Pokemon p)
 	{
-		Pokemon p = new Pokemon(name, nickname, level, moveset, ability, item, evs, Natures.valueOf(nature), Genders.valueOf(gender), shiny, ot);
+
 		System.out.println(p);
 		//IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
 		//pokeRepo.addPokemon(p);

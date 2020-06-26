@@ -1,6 +1,5 @@
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\exceptions\TeamTransactionException.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\web\ConnectionManager.java
-C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\web\CorsFilter.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\dao\LoginDB.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\test\Tests.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\models\Genders.java
@@ -14,5 +13,6 @@ C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\models\Natures.ja
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\dao\ILogin.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\dao\IPokemon.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\services\PCController.java
+C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\services\CorsFilter.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\services\TrainerController.java
 C:\Users\Jeffrey Lor\Documents\Projects\Project1\src\main\java\dao\ITrainer.java

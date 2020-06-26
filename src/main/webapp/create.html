@@ -9,7 +9,7 @@
 		<script>
 			function createPokemon()
 			{
-				let pokemon = [];
+				let pokemon = {};
 				pokemon.name = document.querySelector("#name").value;
 				pokemon.nickname = document.querySelector("#nickname").value;
 				pokemon.level = document.querySelector("#level").value;
@@ -35,8 +35,6 @@
 					pokemon.shiny = "false";
 
 				pokemon.ot = 2;
-
-				console.log(JSON.stringify(pokemon));
 
 				var req = new XMLHttpRequest();
 				req.onreadystatechange = function () {

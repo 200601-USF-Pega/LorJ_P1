@@ -7,7 +7,22 @@
 		<link rel="stylesheet" href="styles.css">
 		<title>PC System</title>
 		<script>
-
+			function login()
+			{
+				let form = new FormData(document.getElementById("login"));
+				var req = new XMLHttpRequest();
+				req.onreadystatechange = () =>
+				{
+					if (this.readyState > 3)
+					{
+						document.querySelector("#username").value = "";
+						document.querySelector("#password").value = "";
+						sessionStorage.setItem("username", );
+					}
+				}
+				req.open("POST", "http://localhost:8080/Project1/services/login", true);
+				req.send(form);
+			}
 		</script>
 	</head>
 	<header>
@@ -22,11 +37,11 @@
 			<div class="white_border">
 				<div class="black_border">
 					<br/><h2 id="login_header">Please Login to Proceed</h2><br/>
-					<form action="/Project1/services/login" method="post">
+					<form id="login" >
 						<div class="form-group">
 							<input type="text" name="username" id="username" class="login-form-field" placeholder="Username"><br/><br/>
 							<input type="password" name="password" id="password" class="login-form-field" placeholder="Password"><br/><br/>
-							<button type="submit" class="btn btn-success">Login</button>
+							<input type="button" class="btn btn-success" onclick="login()" value = "Login">
 						</div>
 					</form>
 				</div>

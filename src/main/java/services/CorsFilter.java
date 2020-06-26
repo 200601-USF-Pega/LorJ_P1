@@ -1,4 +1,4 @@
-package web;
+package services;
 
 import com.sun.jersey.spi.container.ContainerRequest;
 import com.sun.jersey.spi.container.ContainerResponse;

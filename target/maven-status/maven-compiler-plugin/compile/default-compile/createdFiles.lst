@@ -3,10 +3,10 @@ models\Natures.class
 dao\IPokemon.class
 dao\ILogin.class
 models\Trainer.class
-web\CorsFilter.class
 services\LoginController.class
 models\Pokemon.class
 dao\TrainerRepoDB.class
+services\CorsFilter.class
 dao\PokemonRepoDB.class
 models\Pokemon$1.class
 services\PCController.class
