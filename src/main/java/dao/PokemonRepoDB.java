@@ -93,9 +93,9 @@ public class PokemonRepoDB implements IPokemon
             }
 
         }
-        catch (SQLException e)
+        catch (Exception e)
         {
-            e.printStackTrace();
+            //Do nothing
         }
     }
 

@@ -93,8 +93,13 @@ public class PCController
 	public Response depositPokemon(int index)
 	{
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
-		pokeRepo.addPokemon(ps.popPokemon(index));
-		return Response.status(201).build();
+		Pokemon p = ps.popPokemon(index);
+		if(p != null)
+		{
+			pokeRepo.addPokemon(p);
+			return Response.status(201).build();
+		}
+		return Response.status(204).build();
 	}
 
 	@DELETE
