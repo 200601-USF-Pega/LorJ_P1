@@ -48,7 +48,7 @@
 							let row = table.insertRow(table.rows.length);
 
 							let name = pokemon[i].name;
-							if(pokemon.nickname !== "")
+							if(pokemon[i].nickname !== "")
 							{
 								name = name + " (" + pokemon[i].nickname + ")";
 							}
@@ -66,11 +66,31 @@
 								let imgCell = row.insertCell(2);
 								imgCell.innerHTML = "<img src=\"" + imageURI + "\"></img>";
 							});
+
+							let buttonCell = row.insertCell(-1);
+								buttonCell.innerHTML = "<input type=\"button\" class=\"listButton\" onclick=\"withdraw(" + pokemon[i].p_id + ")\" value=\"Withdraw\">";
+
 						}
 					}
 				};
 				xhttp.open("GET", "http://localhost:8080/Project1/services/pokemon/" + sessionStorage.getItem("ot") + "/trainerpokemon", true);
 				xhttp.send();
+			}
+
+			function withdraw(p_id)
+			{
+				console.log(p_id);
+				var req = new XMLHttpRequest();
+				req.onreadystatechange = () =>
+				{
+					if (req.readyState > 3)
+					{
+						location.reload();
+					}
+				}
+				req.open("DELETE", "http://localhost:8080/Project1/services/pokemon/withdraw", true);
+				req.setRequestHeader('Content-Type', 'application/json');
+				req.send(JSON.stringify(p_id));
 			}
 		</script>
 	</head>
@@ -88,6 +108,7 @@
 						<table id="pokemonTable">
 							<thead>
 							<tr>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>

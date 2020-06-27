@@ -7,74 +7,92 @@
 		<title>PC System</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script>
-				function validate()
+			function validate()
+			{
+				if (sessionStorage.getItem("ot") != 0)
 				{
-					if (sessionStorage.getItem("ot") != 0)
-					{
-						document.querySelector("#logButton").innerHTML = "Logout";
-						viewPokemon();
-					}
-					else
-					{
-						location.href = "login.html";
-					}
+					document.querySelector("#logButton").innerHTML = "Logout";
+					viewPokemon();
 				}
-
-				function logButton()
+				else
 				{
-					sessionStorage.setItem("ot", 0);
 					location.href = "login.html";
 				}
+			}
 
-				function viewPokemon()
+			function logButton()
+			{
+				sessionStorage.setItem("ot", 0);
+				location.href = "login.html";
+			}
+
+			function viewPokemon()
+			{
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function()
 				{
-					var xhttp = new XMLHttpRequest();
-					xhttp.onreadystatechange = function()
+					if (xhttp.readyState == 4 && xhttp.status > 199 && xhttp.status < 300)
 					{
-						if (xhttp.readyState == 4 && xhttp.status > 199 && xhttp.status < 300)
-						{
-							document.querySelectorAll("#pokemonTabletbody tr")
-							.forEach(
-								function(element)
-								{
-									element.remove();
-								}
-							);
-							pokemon = JSON.parse(this.responseText);
-							let table = document.querySelector("#pokemonTable tbody");
-
-							for (let i = 0; i < pokemon.length; i++)
+						document.querySelectorAll("#pokemonTabletbody tr")
+						.forEach(
+							function(element)
 							{
-								let row = table.insertRow(table.rows.length);
-
-								let name = pokemon[i].name;
-								if(pokemon.nickname !== "")
-								{
-									name = name + " (" + pokemon[i].nickname + ")";
-								}
-
-								let nameCell = row.insertCell(0);
-								nameCell.innerHTML = name;
-
-								let pokemonCell = row.insertCell(1);
-								pokemonCell.innerHTML = pokemon[i].level;
-
-								var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + pokemon[i].name.toLowerCase();
-
-								$.getJSON(pokeURL, function(data){
-									var imageURI = data.sprites.front_default;
-									let imgCell = row.insertCell(2);
-									imgCell.innerHTML = "<img src=\"" + imageURI + "\"></img>";
-								});
-
-
+								element.remove();
 							}
+						);
+						pokemon = JSON.parse(this.responseText);
+						let table = document.querySelector("#pokemonTable tbody");
+
+						for (let i = 0; i < pokemon.length; i++)
+						{
+							let row = table.insertRow(table.rows.length);
+
+							let name = pokemon[i].name;
+							if(pokemon[i].nickname !== "")
+							{
+								name = name + " (" + pokemon[i].nickname + ")";
+							}
+
+							let nameCell = row.insertCell(0);
+							nameCell.innerHTML = name;
+
+							let pokemonCell = row.insertCell(1);
+							pokemonCell.innerHTML = pokemon[i].level;
+
+							var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + pokemon[i].name.toLowerCase();
+
+							$.getJSON(pokeURL, function(data) {
+								var imageURI = data.sprites.front_default;
+								let imgCell = row.insertCell(2);
+								imgCell.innerHTML = "<img src=\"" + imageURI + "\"></img>";
+							});
+
+							let buttonCell = row.insertCell(-1);
+							buttonCell.innerHTML = "<input type=\"button\" class=\"listButton\" onclick=\"release(" + pokemon[i].p_id + ")\" value=\"Release\">";
+
 						}
-					};
-					xhttp.open("GET", "http://localhost:8080/Project1/services/pokemon/" + sessionStorage.getItem("ot") + "/trainerpokemon", true);
-					xhttp.send();
+					}
+				};
+				xhttp.open("GET", "http://localhost:8080/Project1/services/pokemon/" + sessionStorage.getItem("ot") + "/trainerpokemon", true);
+				xhttp.send();
+			}
+
+			function release(p_id)
+			{
+				console.log(p_id);
+				var req = new XMLHttpRequest();
+				req.onreadystatechange = () =>
+				{
+					if (req.readyState > 3)
+					{
+						location.reload();
+					}
 				}
-			</script>
+				req.open("DELETE", "http://localhost:8080/Project1/services/pokemon/release", true);
+				req.setRequestHeader('Content-Type', 'application/json');
+				req.send(JSON.stringify(p_id));
+			}
+		</script>
 	</head>
 	<header>
 		<ul>

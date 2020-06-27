@@ -16,27 +16,6 @@ public class Pokemon
 	private Genders gender;
 	private boolean isShiny;
 	private int ot;
-
-	public int getOt()
-	{
-		return ot;
-	}
-
-	public void setOt(int ot)
-	{
-		this.ot = ot;
-	}
-
-	public int getP_id()
-	{
-		return p_id;
-	}
-
-	public void setP_id(int p_id)
-	{
-		this.p_id = p_id;
-	}
-
 	private int p_id;
 	
 	public Pokemon()
@@ -176,6 +155,16 @@ public class Pokemon
 	public void setOT(int ot)
 	{
 		this.ot = ot;
+	}
+
+	public int getP_id()
+	{
+		return p_id;
+	}
+
+	public void setP_id(int p_id)
+	{
+		this.p_id = p_id;
 	}
 
 	@Override

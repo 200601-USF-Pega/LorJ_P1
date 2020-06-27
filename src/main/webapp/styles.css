@@ -166,7 +166,7 @@ header h1 {
 	margin: 4px 2px;
 }
 
-menu_col input[type=button]:hover {
+.menu_col input[type=button]:hover, .menu_col input[type=button]:focus, .menu_col input[type=button]:active {
 	background-color: #111;
 }
 
@@ -186,4 +186,10 @@ input[type=text], input[type=password] {
 
 div a, div a:link, div a:visited, div a:hover, div a:active {
 	color: black;
+}
+
+.listButton {
+    border: none;
+    background-color: white;
+    padding: 10px;
 }
