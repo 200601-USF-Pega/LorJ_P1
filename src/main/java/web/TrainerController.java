@@ -1,9 +1,8 @@
-package services;
+package web;
 
 import dao.ITrainer;
 import dao.TrainerRepoDB;
 import org.codehaus.jackson.map.ObjectMapper;
-import web.ConnectionManager;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

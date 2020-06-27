@@ -1,10 +1,9 @@
-package services;
+package web;
 
 import com.sun.jersey.multipart.FormDataParam;
 import dao.ILogin;
 import dao.LoginDB;
 import models.Trainer;
-import web.ConnectionManager;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,10 +19,9 @@ public class LoginController
 	{
 		ILogin login = new LoginDB(ConnectionManager.getConnection());
 		Trainer trainer = login.login(username, password);
-		System.out.println("login");
 		if(trainer != null)
 		{
-			return Response.status(200).build();
+			return Response.status(200).entity(trainer).type(MediaType.APPLICATION_JSON_TYPE).build();
 		}
 		return Response.status(401).build();
 	}

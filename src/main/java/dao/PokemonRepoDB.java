@@ -158,6 +158,7 @@ public class PokemonRepoDB implements IPokemon
                 p.setGender(Genders.valueOf(rs.getString("gender")));
                 p.setShiny(rs.getBoolean("shiny"));
                 p.setOT(rs.getInt("ot"));
+                p.setP_id(rs.getInt("p_id"));
 
                 int [] evs = new int[6];
                 evs[0] = rs.getInt("hp");
@@ -219,6 +220,7 @@ public class PokemonRepoDB implements IPokemon
                 p.setGender(Genders.valueOf(rs.getString("gender")));
                 p.setShiny(rs.getBoolean("shiny"));
                 p.setOT(rs.getInt("ot"));
+                p.setP_id(p_id);
 
                 int [] evs = new int[6];
                 evs[0] = rs.getInt("hp");
@@ -273,13 +275,13 @@ public class PokemonRepoDB implements IPokemon
 
     }
 
-    public List<Pokemon> getTrainerPokemon(Trainer t)
+    public List<Pokemon> getTrainerPokemon(int ot)
     {
         List<Pokemon> result = new ArrayList<Pokemon>();
         try
         {
             PreparedStatement ps = cm.prepareStatement("SELECT * FROM pokemon_table WHERE ot=?");
-            ps.setInt(1, t.getID());
+            ps.setInt(1, ot);
             ps.executeQuery();
             ResultSet rs = ps.getResultSet();
             while(rs.next())
@@ -294,6 +296,7 @@ public class PokemonRepoDB implements IPokemon
                 p.setGender(Genders.valueOf(rs.getString("gender")));
                 p.setShiny(rs.getBoolean("shiny"));
                 p.setOT(rs.getInt("ot"));
+                p.setP_id(rs.getInt("p_id"));
                 if(!result.contains(p))
                 {
                     result.add(p);
@@ -327,6 +330,7 @@ public class PokemonRepoDB implements IPokemon
                 p.setGender(Genders.valueOf(rs.getString("gender")));
                 p.setShiny(rs.getBoolean("shiny"));
                 p.setOT(rs.getInt("ot"));
+                p.setP_id(rs.getInt("p_id"));
                 if(!result.contains(p))
                 {
                     result.add(p);

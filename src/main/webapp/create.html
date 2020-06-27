@@ -7,6 +7,24 @@
 		<title>PC System</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 		<script>
+			function validate()
+			{
+				if (sessionStorage.getItem("ot") != 0)
+				{
+					document.querySelector("#logButton").innerHTML = "Logout";
+				}
+				else
+				{
+					location.href = "login.html";
+				}
+			}
+
+			function logButton()
+			{
+				sessionStorage.setItem("ot", 0);
+				location.href = "login.html";
+			}
+
 			function createPokemon()
 			{
 				let pokemon = {};
@@ -34,7 +52,7 @@
 				else
 					pokemon.shiny = "false";
 
-				pokemon.ot = 2;
+				pokemon.ot = sessionStorage.getItem("ot");
 
 				var req = new XMLHttpRequest();
 				req.onreadystatechange = function () {
@@ -46,7 +64,7 @@
 				}
 
 				req.open("POST", "http://localhost:8080/Project1/services/pokemon/newpokemon", true);
-				req.setRequestHeader('Content-Type', 'application/json');
+            	req.setRequestHeader("Content-Type", "application/json");
 				req.send(JSON.stringify(pokemon));
 			}
 		</script>
@@ -54,10 +72,10 @@
 	<header>
 		<ul>
 			<li><a href="index.html">Home</a></li>
-			<li><a href="login.html">Login</a></li>
+			<li><a id="logButton" style="color: white" onclick="logButton()">Login</a></li>
 		</ul>
 	</header>
-	<body>
+	<body onload="validate()">
 		<div class="menu_box">
 			<div class="white_border">
 				<div class="black_border">

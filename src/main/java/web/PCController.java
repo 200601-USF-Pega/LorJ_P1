@@ -1,14 +1,9 @@
-package services;
+package web;
 
-import com.sun.jersey.multipart.FormDataParam;
 import dao.IPokemon;
 import dao.PokemonRepoDB;
-import models.Genders;
-import models.Natures;
 import models.Pokemon;
-import models.Trainer;
 import org.codehaus.jackson.map.ObjectMapper;
-import web.ConnectionManager;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -34,14 +29,13 @@ public class PCController
 	}
 
 	@GET
-	@Path("/trainerpokemon")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getTrainerPokemon() throws IOException
+	@Path("/{id}/trainerpokemon")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getTrainerPokemon(@PathParam("id") int id) throws IOException
 	{
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
 		ObjectMapper mapper = new ObjectMapper();
-		Trainer t = new Trainer("RED", 2);
-		String response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pokeRepo.getTrainerPokemon(t));
+		String response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pokeRepo.getTrainerPokemon(id));
 		return Response
 				.status(Response.Status.OK)
 				.entity(response)
@@ -55,11 +49,22 @@ public class PCController
 	public Response newPokemon(Pokemon p)
 	{
 
-		System.out.println(p);
-		//IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
-		//pokeRepo.addPokemon(p);
+		System.out.println(p.exportSmogon());
+		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
+		pokeRepo.addPokemon(p);
 
-		return Response.ok().build();
+		return Response.status(201).build();
+	}
+
+	@DELETE
+	@Path("release")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response releasePokemon(int p_id)
+	{
+		System.out.println(p_id);
+		//IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
+		//pokeRepo.removePokemon(p_id);
+		return Response.status(200).build();
 	}
 
 }

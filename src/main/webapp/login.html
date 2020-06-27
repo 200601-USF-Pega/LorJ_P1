@@ -13,11 +13,19 @@
 				var req = new XMLHttpRequest();
 				req.onreadystatechange = () =>
 				{
-					if (this.readyState > 3)
+					if (req.readyState > 3)
 					{
-						document.querySelector("#username").value = "";
-						document.querySelector("#password").value = "";
-						sessionStorage.setItem("username", );
+						console.log("Trainer ID: " + JSON.parse(req.responseText).id);
+						if (req.readyState == 4 && req.status == 200)
+						{
+							sessionStorage.setItem("username", document.querySelector("#username").value);
+							sessionStorage.setItem("ot", JSON.parse(req.responseText).id);
+							location.href = "index.html";
+						}
+						if (req.readyState == 4 && req.status == 401)
+						{
+				  			alert("Invalid login credentials. Please try again.");
+						}
 					}
 				}
 				req.open("POST", "http://localhost:8080/Project1/services/login", true);

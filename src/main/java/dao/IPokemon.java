@@ -11,7 +11,7 @@ public interface IPokemon
     void removePokemon(int id);
     Pokemon getPokemon(int id);
     Pokemon withdrawPokemon(int id);
-    List<Pokemon> getTrainerPokemon(Trainer t);
+    List<Pokemon> getTrainerPokemon(int id);
     List<Pokemon> getAllPokemon();
 
 }
