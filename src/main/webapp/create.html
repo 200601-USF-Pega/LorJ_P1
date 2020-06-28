@@ -47,10 +47,14 @@
 				pokemon.nature = document.querySelector("#nature").value;
 				pokemon.gender = document.querySelector("#gender").value;
 
-				if (document.querySelector("#shiny").value == "on")
+				if (document.getElementById("shiny").checked)
+				{
 					pokemon.shiny = "true";
+				}
 				else
+				{
 					pokemon.shiny = "false";
+				}
 
 				pokemon.ot = sessionStorage.getItem("ot");
 
@@ -139,6 +143,7 @@
 								<input type="submit" class="menu_opt" value="FINISH" onclick="createPokemon()"><br/><p></p>
 							</div>
 						</form>
+						<button onclick="test()">swag</button>
 					</fieldset>
 				</div>
 			</div>

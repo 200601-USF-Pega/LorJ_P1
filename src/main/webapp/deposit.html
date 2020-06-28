@@ -62,7 +62,14 @@
 							var pokeURL = "https://pokeapi.co/api/v2/pokemon/" + pokemon[i].name.toLowerCase();
 
 							$.getJSON(pokeURL, function(data){
-								var imageURI = data.sprites.front_default;
+								if(pokemon[i].shiny)
+								{
+									var imageURI = data.sprites.front_shiny;
+								}
+								else
+								{
+									var imageURI = data.sprites.front_default;
+								}
 								let imgCell = row.insertCell(2);
 								imgCell.innerHTML = "<img src=\"" + imageURI + "\"></img>";
 							});

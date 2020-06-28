@@ -15,7 +15,6 @@
 				{
 					if (req.readyState > 3)
 					{
-						console.log("Trainer ID: " + JSON.parse(req.responseText).id);
 						if (req.readyState == 4 && req.status == 200)
 						{
 							sessionStorage.setItem("username", document.querySelector("#username").value);

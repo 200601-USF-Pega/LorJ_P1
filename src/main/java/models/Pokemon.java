@@ -14,7 +14,7 @@ public class Pokemon
 	private int [] evs;
 	private Natures nature;
 	private Genders gender;
-	private boolean isShiny;
+	private boolean shiny;
 	private int ot;
 	private int p_id;
 	
@@ -31,12 +31,12 @@ public class Pokemon
 		this.evs = zeroEV;
 		this.nature = Natures.Adamant;
 		this.gender = Genders.Genderless;
-		this.isShiny = false;
+		this.shiny = false;
 		this.ot = 0;
 	}
 
 	public Pokemon(String name, String nickname, int level, String[] moveset, String ability, String item, int[] evs,
-			Natures nature, Genders gender, boolean isShiny, int ot)
+	               Natures nature, Genders gender, boolean shiny, int ot)
 	{
 		this.name = name;
 		this.nickname = nickname;
@@ -47,7 +47,7 @@ public class Pokemon
 		this.evs = evs;
 		this.nature = nature;
 		this.gender = gender;
-		this.isShiny = isShiny;
+		this.shiny = shiny;
 		this.ot = ot;
 	}
 
@@ -139,12 +139,12 @@ public class Pokemon
 
 	public boolean isShiny()
 	{
-		return isShiny;
+		return shiny;
 	}
 
 	public void setShiny(boolean isShiny)
 	{
-		this.isShiny = isShiny;
+		this.shiny = isShiny;
 	}
 
 	public int getOT()
@@ -207,7 +207,7 @@ public class Pokemon
 			break;
 		}
 		String i = item.isEmpty() ? "" : " @ " + item;
-		String s = isShiny ? "Yes" : "No";
+		String s = shiny ? "Yes" : "No";
 
 		String [] evLabel = {" HP", " Atk", " Def", " SpA", " SpD", " Spe"};
 		StringJoiner sj = new StringJoiner(" / ");
