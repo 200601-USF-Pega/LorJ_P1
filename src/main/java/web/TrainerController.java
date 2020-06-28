@@ -1,7 +1,10 @@
 package web;
 
+import com.sun.jersey.multipart.FormDataParam;
 import dao.ITrainer;
 import dao.TrainerRepoDB;
+import models.Trainer;
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.*;
@@ -13,10 +16,13 @@ import java.io.IOException;
 public class TrainerController
 {
 
+	private static final Logger log = Logger.getLogger(PCController.class);
+
 	@GET
 	@Path("/alltrainers")
-	@Consumes("application/json")
-	public Response getAllPeople() throws IOException {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getAllPeople() throws IOException
+	{
 		ITrainer trainerRepo = new TrainerRepoDB(ConnectionManager.getConnection());
 		ObjectMapper mapper = new ObjectMapper();
 		String response = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(trainerRepo.getAllTrainers());
@@ -25,6 +31,18 @@ public class TrainerController
 				.entity(response)
 				.type(MediaType.APPLICATION_JSON_TYPE)
 				.build();
+	}
+
+	@POST
+	@Path("/addtrainer")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response addTrainer(@FormDataParam("username") String username, @FormDataParam("password") String password)
+	{
+		ITrainer tRepo = new TrainerRepoDB(ConnectionManager.getConnection());
+		tRepo.addTrainer(username, password);
+		log.info("Profile created for " + username);
+
+		return Response.status(201).build();
 	}
 
 }

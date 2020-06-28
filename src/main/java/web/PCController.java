@@ -3,6 +3,7 @@ package web;
 import dao.IPokemon;
 import dao.PokemonRepoDB;
 import models.Pokemon;
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import services.PokemonService;
 
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class PCController
 {
 	private static PokemonService ps = new PokemonService();
+	private static final Logger log = Logger.getLogger(PCController.class);
 
 	@GET
 	@Path("/allpokemon")
@@ -63,9 +65,8 @@ public class PCController
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response newPokemon(Pokemon p)
 	{
-		System.out.println(p.exportSmogon());
-		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
-		pokeRepo.addPokemon(p);
+		log.info("Pokemon Created:\n" + p.exportSmogon());
+		ps.addPokemon(p);
 
 		return Response.status(201).build();
 	}
@@ -80,6 +81,7 @@ public class PCController
 		if(p != null)
 		{
 			ps.addPokemon(p);
+			log.info("Pokemon withdrawn with ID=" + p_id);
 			return Response.status(200).build();
 		}
 
@@ -96,6 +98,7 @@ public class PCController
 		if(p != null)
 		{
 			pokeRepo.addPokemon(p);
+			log.info("Pokemon deposited.");
 			return Response.status(201).build();
 		}
 		return Response.status(204).build();
@@ -108,6 +111,7 @@ public class PCController
 	{
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
 		pokeRepo.removePokemon(p_id);
+		log.info("Pokemon with ID=" + p_id + " successfully removed.");
 		return Response.status(200).build();
 	}
 

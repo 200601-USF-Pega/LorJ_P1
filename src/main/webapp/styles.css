@@ -13,7 +13,6 @@ body  {
 	font-family: Courier, monospace;
 	font-smooth: never;
 	font-size: 32px;
-	text-align: right;
 	letter-spacing: -4px;
 	display: inline-block;
 }
@@ -57,6 +56,10 @@ body  {
 	padding-left: 20px;
 }
 
+.menu_banner .padding {
+    padding-bottom: 48px;
+}
+
 .black_border {
 	color:black;
 	border: 3px solid black;
@@ -86,6 +89,17 @@ body  {
     font-smooth: never;
     font-size: 32px;
     letter-spacing: -4px;
+}
+
+#register {
+    padding-left: 20%;
+    font-size: 24px;
+}
+
+img {
+    float: right;
+    width: 20%;
+    height: auto;
 }
 
 #create_pokemon, #create_pokemonR {
@@ -156,7 +170,7 @@ header h1 {
 	padding: 20px;
 }
 
-.menu_col input[type=button] {
+.menu_col input[type=button], #register input[type=button] {
 	width: 60%;
 	height: 40px;
 	background-color: #333;
@@ -168,6 +182,10 @@ header h1 {
 
 .menu_col input[type=button]:hover, .menu_col input[type=button]:focus, .menu_col input[type=button]:active {
 	background-color: #111;
+}
+
+.menu_box input[type=text] {
+    margin-top: 10%;
 }
 
 input[type=text], input[type=password] {

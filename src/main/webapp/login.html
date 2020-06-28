@@ -7,6 +7,12 @@
 		<link rel="stylesheet" href="styles.css">
 		<title>PC System</title>
 		<script>
+			function initialize()
+			{
+				sessionStorage.setItem("ot", 0);
+				sessionStorage.setItem("username", "");
+			}
+
 			function login()
 			{
 				let form = new FormData(document.getElementById("login"));
@@ -35,20 +41,19 @@
 	<header>
 		<ul>
 			<li><a href="index.html">Home</a></li>
-			<li><a href="login.html">Login</a></li>
+			<li><a href="register.html">New Trainer?</a></li>
 		</ul>
 	</header>
-	<body>
-
+	<body onload="initialize()">
 		<div class="menu_col">
 			<div class="white_border">
 				<div class="black_border">
 					<br/><h2 id="login_header">Please Login to Proceed</h2><br/>
-					<form id="login" >
+					<form id="login">
 						<div class="form-group">
 							<input type="text" name="username" id="username" class="login-form-field" placeholder="Username"><br/><br/>
 							<input type="password" name="password" id="password" class="login-form-field" placeholder="Password"><br/><br/>
-							<input type="button" class="btn btn-success" onclick="login()" value = "Login">
+							<input type="button" class="btn btn-success" onclick="login()" value="Login">
 						</div>
 					</form>
 				</div>
