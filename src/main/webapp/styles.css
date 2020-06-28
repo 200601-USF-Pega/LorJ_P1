@@ -96,12 +96,6 @@ body  {
     font-size: 24px;
 }
 
-img {
-    float: right;
-    width: 20%;
-    height: auto;
-}
-
 #create_pokemon, #create_pokemonR {
     padding-left: 20px;
 }
@@ -182,10 +176,6 @@ header h1 {
 
 .menu_col input[type=button]:hover, .menu_col input[type=button]:focus, .menu_col input[type=button]:active {
 	background-color: #111;
-}
-
-.menu_box input[type=text] {
-    margin-top: 10%;
 }
 
 input[type=text], input[type=password] {

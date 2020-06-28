@@ -95,7 +95,7 @@
 						location.reload();
 					}
 				}
-				req.open("POST", "http://localhost:8080/Project1/services/pokemon/deposit", true);
+				req.open("PUT", "http://localhost:8080/Project1/services/pokemon/" + sessionStorage.getItem("ot") +"/deposit", true);
 				req.setRequestHeader('Content-Type', 'application/json');
 				req.send(JSON.stringify(index));
 			}

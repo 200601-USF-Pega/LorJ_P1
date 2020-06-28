@@ -88,10 +88,10 @@ public class PCController
 		return Response.status(204).build();
 	}
 
-	@POST
-	@Path("/deposit")
+	@PUT
+	@Path("/{id}/deposit")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response depositPokemon(int index)
+	public Response depositPokemon(int index, @PathParam("id") int id)
 	{
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
 		Pokemon p = ps.popPokemon(index);

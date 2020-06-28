@@ -21,7 +21,7 @@ public class TrainerController
 	@GET
 	@Path("/alltrainers")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response getAllPeople() throws IOException
+	public Response getAllTrainers() throws IOException
 	{
 		ITrainer trainerRepo = new TrainerRepoDB(ConnectionManager.getConnection());
 		ObjectMapper mapper = new ObjectMapper();

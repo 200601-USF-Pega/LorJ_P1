@@ -1,11 +1,7 @@
 package test;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import web.ConnectionManager;
 import dao.PokemonRepoDB;
-import exceptions.TeamTransactionException;
 import models.Genders;
 import models.Natures;
 import models.Pokemon;
@@ -13,6 +9,11 @@ import models.Trainer;
 import org.junit.AfterClass;
 import org.junit.Test;
 import dao.LoginDB;
+
+import java.net.URL;
+import java.net.URLConnection;
+
+import static org.junit.Assert.*;
 
 public class Tests
 {
@@ -32,7 +33,6 @@ public class Tests
 		assertEquals(t.getName(), "TEST");
 
 	}
-
 
 	@Test
 	public void testSmogon()
@@ -71,6 +71,34 @@ public class Tests
 	{
 		PokemonRepoDB repo = new PokemonRepoDB(ConnectionManager.getConnection());
 		repo.getAllPokemon();
+	}
+
+	@Test
+	public void restGetPokemon()
+	{
+		try
+		{
+			URL url = new URL("http://localhost:8080/Project1/services/pokemon/allpokemon");
+			URLConnection urlc = url.openConnection();
+		}
+		catch(Exception e)
+		{
+			fail("Should not have thrown any exception");
+		}
+	}
+
+	@Test
+	public void restGetTrainers()
+	{
+		try
+		{
+			URL url = new URL("http://localhost:8080/Project1/services/trainer/alltrainers");
+			URLConnection urlc = url.openConnection();
+		}
+		catch(Exception e)
+		{
+			fail("Should not have thrown any exception");
+		}
 	}
 
 	@AfterClass
