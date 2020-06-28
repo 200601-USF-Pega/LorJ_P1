@@ -61,9 +61,8 @@
 				var req = new XMLHttpRequest();
 				req.onreadystatechange = function () {
 					if (this.readyState > 3) {
-						document.querySelector("#name").innerHTML = "";
-						document.querySelector("#nickname").innerHTML = "";
-						document.querySelector("#level").innerHTML = "";
+						alert("Pok" + '\u00E9' + "mon created!");
+						location.href = "index.html";
 					}
 				}
 
@@ -85,7 +84,7 @@
 				<div class="black_border">
 					<fieldset id="create_pokemon">
 						<h2 class="page_header">CREATE POK&eacute;MON</h2>
-						<form action="/Project1/services/pokemon/newpokemon" method="post">
+						<form>
 							<div class="form-group">
 								<input type="number" name="level" id="level" placeholder="Lvl" min="1" max="100"><br/>
 								<input type="text" name="name" id="name" placeholder="Name">
@@ -140,10 +139,9 @@
 								</select><br/>
 								<input type="checkbox" name="shiny" id="shiny">
 								<label for="shiny">Is shiny?</label><br/>
-								<input type="submit" class="menu_opt" value="FINISH" onclick="createPokemon()"><br/><p></p>
+								<input type="button" class="menu_opt" value="FINISH" onclick="createPokemon()"><br/><p></p>
 							</div>
 						</form>
-						<button onclick="test()">swag</button>
 					</fieldset>
 				</div>
 			</div>

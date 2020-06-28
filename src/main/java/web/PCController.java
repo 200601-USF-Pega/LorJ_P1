@@ -63,7 +63,6 @@ public class PCController
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response newPokemon(Pokemon p)
 	{
-
 		System.out.println(p.exportSmogon());
 		IPokemon pokeRepo = new PokemonRepoDB(ConnectionManager.getConnection());
 		pokeRepo.addPokemon(p);
